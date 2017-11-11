@@ -12,6 +12,9 @@ namespace Vandeven_Shuttle
 {
     public partial class Form1 : Form
     {
+        /// <summary>
+        /// This is the GUI
+        /// </summary>
         public Form1()
         {
             InitializeComponent();
