@@ -1,3 +1,11 @@
 d:\users\it3883group6-01\documents\visual studio 2015\Projects\Vandeven_Shuttle\Vandeven_Shuttle\bin\Debug\Vandeven_Shuttle.exe.config
 C:\Users\devon\Documents\Visual Studio 2015\Projects\IT3883_Group_6\Vandeven_Shuttle\bin\Debug\Vandeven_Shuttle.exe.config
 C:\Users\shark\Documents\Visual Studio 2015\Projects\IT3883_Group_6\Vandeven_Shuttle\bin\Debug\Vandeven_Shuttle.exe.config
+C:\Users\devon\Documents\Visual Studio 2015\Projects\IT3883_Group_6\Vandeven_Shuttle\bin\Debug\Vandeven_Shuttle.exe
+C:\Users\devon\Documents\Visual Studio 2015\Projects\IT3883_Group_6\Vandeven_Shuttle\bin\Debug\Vandeven_Shuttle.pdb
+C:\Users\devon\Documents\Visual Studio 2015\Projects\IT3883_Group_6\Vandeven_Shuttle\obj\Debug\Vandeven_Shuttle.csprojResolveAssemblyReference.cache
+C:\Users\devon\Documents\Visual Studio 2015\Projects\IT3883_Group_6\Vandeven_Shuttle\obj\Debug\Vandeven_Shuttle.vandevenShuttleSystem.resources
+C:\Users\devon\Documents\Visual Studio 2015\Projects\IT3883_Group_6\Vandeven_Shuttle\obj\Debug\Vandeven_Shuttle.Properties.Resources.resources
+C:\Users\devon\Documents\Visual Studio 2015\Projects\IT3883_Group_6\Vandeven_Shuttle\obj\Debug\Vandeven_Shuttle.csproj.GenerateResource.Cache
+C:\Users\devon\Documents\Visual Studio 2015\Projects\IT3883_Group_6\Vandeven_Shuttle\obj\Debug\Vandeven_Shuttle.exe
+C:\Users\devon\Documents\Visual Studio 2015\Projects\IT3883_Group_6\Vandeven_Shuttle\obj\Debug\Vandeven_Shuttle.pdb
