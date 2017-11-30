@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Vandeven_Shuttle
 {
@@ -15,6 +16,8 @@ namespace Vandeven_Shuttle
         /// <summary>
         /// This is the GUI
         /// </summary>
+
+        decimal cost;
         public vandevenShuttleSystem()
         {
             InitializeComponent();
@@ -23,7 +26,9 @@ namespace Vandeven_Shuttle
 
         private void vandevenShuttleSystem_Load(object sender, EventArgs e)
         {
-
+            passengersComboBox.SelectedIndex = 0;
+            destinationComboBox.SelectedIndex = 0;
+            methodOfReservationComboBox.SelectedIndex = 0;
         }
 
 
@@ -39,6 +44,134 @@ namespace Vandeven_Shuttle
             newUserPanel.BringToFront();
             mainPanel.Visible = false;
 
+        }
+
+        private void firstNameMaskedTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+
+            if (!Char.IsLetter(ch) && ch != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void lastNameMaskedTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+
+            if (!Char.IsLetter(ch) && ch != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void creditCardNumberTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+
+            if (!Char.IsDigit(ch) && ch != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void emailMaskedTextBox_Leave(object sender, EventArgs e)
+        {
+        
+        }
+
+        private void destinationComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            string destination = destinationComboBox.Text.ToString();
+            string temp = passengersComboBox.Text.ToString();
+            decimal passengers = Convert.ToDecimal(temp);
+
+            if (destination.Equals("Los Angeles"))
+            {
+                cost = passengers * 137;
+                costLabel.Text = cost.ToString("c");
+            }
+            if (destination.Equals("Chicago"))
+            {
+                cost = passengers * 79;
+                costLabel.Text = cost.ToString("c");
+            }
+            if (destination.Equals("New York"))
+            {
+                cost = passengers * 118;
+                costLabel.Text = cost.ToString("c");
+            }
+            if (destination.Equals("Miami"))
+            {
+                cost = passengers * 129;
+                costLabel.Text = cost.ToString("c");
+            }
+            if (destination.Equals("Dallas"))
+            {
+                cost = passengers * 96;
+                costLabel.Text = cost.ToString("c");
+            }
+            if (destination.Equals("San Diego"))
+            {
+                cost = passengers * 135;
+                costLabel.Text = cost.ToString("c");
+            }
+            if (destination.Equals("Seattle"))
+            {
+                cost = passengers * 104;
+                costLabel.Text = cost.ToString("c");
+            }
+        }
+
+        private void passengersComboBox_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            string destination = destinationComboBox.Text.ToString();
+            string temp = passengersComboBox.Text.ToString();
+            decimal passengers = Convert.ToDecimal(temp);
+
+            if (destination.Equals("Los Angeles"))
+            {
+                cost = passengers * 137;
+                costLabel.Text = cost.ToString("c");
+            }
+            if (destination.Equals("Chicago"))
+            {
+                cost = passengers * 79;
+                costLabel.Text = cost.ToString("c");
+            }
+            if (destination.Equals("New York"))
+            {
+                cost = passengers * 118;
+                costLabel.Text = cost.ToString("c");
+            }
+            if (destination.Equals("Miami"))
+            {
+                cost = passengers * 129;
+                costLabel.Text = cost.ToString("c");
+            }
+            if (destination.Equals("Dallas"))
+            {
+                cost = passengers * 96;
+                costLabel.Text = cost.ToString("c");
+            }
+            if (destination.Equals("San Diego"))
+            {
+                cost = passengers * 135;
+                costLabel.Text = cost.ToString("c");
+            }
+            if (destination.Equals("Seattle"))
+            {
+                cost = passengers * 104;
+                costLabel.Text = cost.ToString("c");
+            }
+        }
+
+        private void confirmPurchaseButton_Click(object sender, EventArgs e)
+        {
+            newUserPanel.Visible = false;
+            reservationCompletePanel.Visible = true;
+            reservationCompletePanel.BringToFront();
         }
     }
 }
