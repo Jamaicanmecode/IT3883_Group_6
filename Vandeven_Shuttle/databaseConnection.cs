@@ -1,26 +1,82 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.OleDb;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Vandeven_Shuttle
 {
-    public class databaseConnection
+    class databaseConnection
     {
-        /// <summary>
-        /// This method will load values from the database
-        /// </summary>
-        public void load()
+        System.Data.OleDb.OleDbConnection connection;
+        OleDbCommand command;
+        OleDbCommand getIdCommand;
+        int id;
+
+        // Change the connection location when adding it to the final build
+        private void ConnectTo()
         {
-            throw new System.NotImplementedException();
+            connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\shark\Documents\VandevanAirShuttle.accdb");
+            command = connection.CreateCommand();
+            getIdCommand = connection.CreateCommand();
         }
 
-        /// <summary>
-        /// This method will update the database with the new values
-        /// </summary>
-        public void update()
+        public databaseConnection()
         {
-            throw new System.NotImplementedException();
+            ConnectTo();
         }
+
+        public void InsertCustomer(Customer c)
+        {
+            try
+            {
+                connection.Open();
+                command.CommandText = "INSERT INTO Customer (FirstName, LastName, CustomerAddress, CustomerNumber, CreditCardNumber, CustomerEmail) VALUES ('" + c.FirstName + "','" +
+                    c.LastName + "','" + c.Address + "','" + c.PhoneNumber + "','" + c.CreditCardNumber + "','" + c.Email + "')";
+                command.CommandType = System.Data.CommandType.Text;
+
+                command.ExecuteNonQuery(); 
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        public void InsertReservation(Reservation r)
+        {
+            try
+            {
+                command.CommandText = "INSERT INTO Reservation (CustomerID, ReserveDate, TravelDate, DestinationCity, NumPassengers, ShuttleID, ReservMethod) VALUES ('"+id + "','" + 
+                    r.ReservationDate + "','" + r.TravelDate + "','" + r.DestinationCity + "','" + r.PassengerCount + "','" + 1 + "','" + r.ReservationMethod +"')";
+                command.CommandType = System.Data.CommandType.Text;
+                connection.Open();
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+
     }
 }

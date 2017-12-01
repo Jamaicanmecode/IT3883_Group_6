@@ -2,89 +2,97 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Vandeven_Shuttle
 {
-    public class Customer
+    class Customer
     {
-        /// <summary>
-        /// Customer Constructor
-        /// </summary>
-        public Customer()
-        {
-            throw new System.NotImplementedException();
-        }
+        private string firstName;
 
-        private string firstName
+        public string FirstName
         {
             get
             {
-                throw new System.NotImplementedException();
+                return firstName;
             }
 
             set
             {
+                firstName = value;
             }
         }
 
-        private string lastName
+        private string lastName;
+
+        public string LastName
         {
             get
             {
-                throw new System.NotImplementedException();
+                return lastName;
             }
 
             set
             {
+                lastName = value;
             }
         }
 
-        private string address
+        private string address;
+        public string Address
         {
             get
             {
-                throw new System.NotImplementedException();
+                return address;
             }
 
             set
             {
+                address = value;
             }
         }
 
-        private string email
+        private string email;
+        public string Email
         {
             get
             {
-                throw new System.NotImplementedException();
+                return email;
             }
 
             set
             {
+                email = value;
             }
         }
 
-        private string creditCardNumber
+        private double creditCardNumber;
+        public double CreditCardNumber
         {
             get
             {
-                throw new System.NotImplementedException();
+                return creditCardNumber;
             }
 
             set
             {
+                creditCardNumber = value;
             }
         }
 
-        private string phoneNumber
+        private double phoneNumber;
+        public double PhoneNumber
         {
             get
             {
-                throw new System.NotImplementedException();
+                return phoneNumber;
             }
 
             set
             {
+                phoneNumber = value;
             }
         }
+
     }
 }

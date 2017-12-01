@@ -7,39 +7,82 @@ namespace Vandeven_Shuttle
 {
     public class Reservation
     {
-        public int reservationTime
+      private  int customerID;
+
+       private DateTime reservationDate;
+        
+
+        public DateTime ReservationDate
         {
             get
             {
-                throw new System.NotImplementedException();
+                return reservationDate;
             }
 
             set
             {
+                reservationDate = value;
             }
         }
 
-        /// <summary>
-        /// add the destination
-        /// </summary>
-        private string reservationDestination
+       private DateTime travelDate;
+        public DateTime TravelDate
         {
             get
             {
-                throw new System.NotImplementedException();
+                return travelDate;
             }
 
             set
             {
+                travelDate = value;
+            }
+        }
+        private string destinationCity;
+        public string DestinationCity
+        {
+            get
+            {
+                return destinationCity;
+            }
+
+            set
+            {
+                destinationCity = value;
             }
         }
 
-        /// <summary>
-        /// calculate the total cost for the shuttle
-        /// </summary>
-        public void totalCost()
+        private int passengerCount;
+        public int PassengerCount
         {
-            throw new System.NotImplementedException();
+            get
+            {
+                return passengerCount;
+            }
+
+            set
+            {
+                passengerCount = value;
+            }
         }
+
+        private string reservationMethod;
+        public string ReservationMethod
+        {
+            get
+            {
+                return reservationMethod;
+            }
+
+            set
+            {
+                reservationMethod = value;
+            }
+        }
+
+
+        
+        
+        
     }
 }

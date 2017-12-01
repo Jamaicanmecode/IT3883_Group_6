@@ -13,6 +13,7 @@ namespace Vandeven_Shuttle
 {
     public partial class vandevenShuttleSystem : Form
     {
+        databaseConnection d = new databaseConnection();
         /// <summary>
         /// This is the GUI
         /// </summary>
@@ -172,6 +173,25 @@ namespace Vandeven_Shuttle
             newUserPanel.Visible = false;
             reservationCompletePanel.Visible = true;
             reservationCompletePanel.BringToFront();
+
+            Customer c = new Customer();
+            c.FirstName = firstNameMaskedTextBox.Text;
+            c.LastName = lastNameMaskedTextBox.Text;
+            c.Address = homeAddressTextBox.Text;
+            c.CreditCardNumber = Convert.ToDouble(creditCardNumberTextBox.Text);
+            c.Email = emailMaskedTextBox.Text;
+            c.PhoneNumber = Convert.ToDouble(phoneNumberMaskedTextBox.Text);
+
+            Reservation r = new Reservation();
+            r.DestinationCity = destinationComboBox.SelectedItem.ToString();
+            r.PassengerCount = Convert.ToInt32(passengersComboBox.SelectedItem.ToString());
+            r.ReservationDate = DateTime.Today;
+            r.ReservationMethod = methodOfReservationComboBox.SelectedItem.ToString();
+            r.TravelDate = departingDateTimePicker.Value.Date;
+            
+            d.InsertCustomer(c);
+            d.InsertReservation(r);
         }
+
     }
 }
