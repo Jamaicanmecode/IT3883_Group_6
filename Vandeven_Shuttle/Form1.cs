@@ -17,6 +17,14 @@ namespace Vandeven_Shuttle
         /// <summary>
         /// This is the GUI
         /// </summary>
+        /// 
+        string first;
+        string last;
+        string address;
+        string number;
+        string credit;
+        string email;
+        bool isEmail = false;
 
         decimal cost;
         public vandevenShuttleSystem()
@@ -77,10 +85,6 @@ namespace Vandeven_Shuttle
             }
         }
 
-        private void emailMaskedTextBox_Leave(object sender, EventArgs e)
-        {
-        
-        }
 
         private void destinationComboBox_SelectionChangeCommitted(object sender, EventArgs e)
         {
@@ -168,6 +172,174 @@ namespace Vandeven_Shuttle
             }
         }
 
+        private void firstNameMaskedTextBox_Leave(object sender, EventArgs e)
+        {
+            first = firstNameMaskedTextBox.Text.ToString();
+            last = lastNameMaskedTextBox.Text.ToString();
+            address = homeAddressTextBox.Text.ToString();
+            number = phoneNumberMaskedTextBox.Text.ToString();
+            credit = creditCardNumberTextBox.Text.ToString();
+            email = emailMaskedTextBox.Text.ToString();
+
+            if (first.Equals(""))
+            {
+                errorProvider.SetError(firstNameMaskedTextBox, "error");
+            }
+            else
+                errorProvider.SetError(firstNameMaskedTextBox, "");
+
+            if (first.Equals("") || last.Equals("") || address.Equals("") || number.Length < 10 || credit.Length < 16 || isEmail == false)
+            {
+                confirmPurchaseButton.Enabled = false;
+            }
+            else
+                confirmPurchaseButton.Enabled = true;
+        }
+
+        private void lastNameMaskedTextBox_Leave(object sender, EventArgs e)
+        {
+            first = firstNameMaskedTextBox.Text.ToString();
+            last = lastNameMaskedTextBox.Text.ToString();
+            address = homeAddressTextBox.Text.ToString();
+            number = phoneNumberMaskedTextBox.Text.ToString();
+            credit = creditCardNumberTextBox.Text.ToString();
+            email = emailMaskedTextBox.Text.ToString();
+
+            if (last.Equals(""))
+            {
+                errorProvider.SetError(lastNameMaskedTextBox, "error");
+            }
+            else
+                errorProvider.SetError(lastNameMaskedTextBox, "");
+
+            if (first.Equals("") || last.Equals("") || address.Equals("") || number.Length < 10 || credit.Length < 16 || isEmail == false)
+            {
+                confirmPurchaseButton.Enabled = false;
+            }
+            else
+                confirmPurchaseButton.Enabled = true;
+        }
+
+        private void homeAddressTextBox_Leave(object sender, EventArgs e)
+        {
+            first = firstNameMaskedTextBox.Text.ToString();
+            last = lastNameMaskedTextBox.Text.ToString();
+            address = homeAddressTextBox.Text.ToString();
+            number = phoneNumberMaskedTextBox.Text.ToString();
+            credit = creditCardNumberTextBox.Text.ToString();
+            email = emailMaskedTextBox.Text.ToString();
+
+            if (address.Equals(""))
+            {
+                errorProvider.SetError(homeAddressTextBox, "error");
+            }
+            else
+                errorProvider.SetError(homeAddressTextBox, "");
+
+            if (first.Equals("") || last.Equals("") || address.Equals("") || number.Length < 10 || credit.Length < 16 || isEmail == false)
+            {
+                confirmPurchaseButton.Enabled = false;
+            }
+            else
+                confirmPurchaseButton.Enabled = true;
+        }
+
+        private void phoneNumberMaskedTextBox_Leave(object sender, EventArgs e)
+        {
+            first = firstNameMaskedTextBox.Text.ToString();
+            last = lastNameMaskedTextBox.Text.ToString();
+            address = homeAddressTextBox.Text.ToString();
+            number = phoneNumberMaskedTextBox.Text.ToString();
+            credit = creditCardNumberTextBox.Text.ToString();
+            email = emailMaskedTextBox.Text.ToString();
+
+            if (number.Length < 10)
+            {
+                errorProvider.SetError(phoneNumberMaskedTextBox, "error");
+            }
+            else
+                errorProvider.SetError(phoneNumberMaskedTextBox, "");
+
+            if (first.Equals("") || last.Equals("") || address.Equals("") || number.Length < 10 || credit.Length < 16 || isEmail == false)
+            {
+                confirmPurchaseButton.Enabled = false;
+            }
+            else
+                confirmPurchaseButton.Enabled = true;
+        }
+
+        private void creditCardNumberTextBox_Leave(object sender, EventArgs e)
+        {
+            first = firstNameMaskedTextBox.Text.ToString();
+            last = lastNameMaskedTextBox.Text.ToString();
+            address = homeAddressTextBox.Text.ToString();
+            number = phoneNumberMaskedTextBox.Text.ToString();
+            credit = creditCardNumberTextBox.Text.ToString();
+            email = emailMaskedTextBox.Text.ToString();
+
+            if (credit.Length < 16)
+            {
+                errorProvider.SetError(creditCardNumberTextBox, "error");
+            }
+            else
+                errorProvider.SetError(creditCardNumberTextBox, "");
+
+            if (first.Equals("") || last.Equals("") || address.Equals("") || number.Length < 10 || credit.Length < 16 || isEmail == false)
+            {
+                confirmPurchaseButton.Enabled = false;
+            }
+            else
+                confirmPurchaseButton.Enabled = true;
+        }
+
+        private void emailMaskedTextBox_Leave(object sender, EventArgs e)
+        {
+            first = firstNameMaskedTextBox.Text.ToString();
+            last = lastNameMaskedTextBox.Text.ToString();
+            address = homeAddressTextBox.Text.ToString();
+            number = phoneNumberMaskedTextBox.Text.ToString();
+            credit = creditCardNumberTextBox.Text.ToString();
+            email = emailMaskedTextBox.Text.ToString();
+            string pattern = "^([0-9a-zA-z]([-\\.\\w]*[0-9a-zA-z])*@([0-9a-zA-Z][-\\w]*[0-9a-zA-Z]\\.)+[a-zA-Z]{2,9})$";
+
+            if (Regex.IsMatch(emailMaskedTextBox.Text, pattern))
+            {
+                isEmail = true;
+                errorProvider.SetError(emailMaskedTextBox, "");
+            }
+            else
+            {
+                isEmail = false;
+                errorProvider.SetError(emailMaskedTextBox, "error");
+            }
+
+            if (first.Equals("") || last.Equals("") || address.Equals("") || number.Length < 10 || credit.Length < 16 || isEmail == false)
+            {
+                confirmPurchaseButton.Enabled = false;
+            }
+            else
+                confirmPurchaseButton.Enabled = true;
+        }
+
+        private void mainMenuButton_Click(object sender, EventArgs e)
+        {
+            mainPanel.Visible = true;
+            mainPanel.BringToFront();
+            reservationCompletePanel.Visible = false;
+            passengersComboBox.SelectedIndex = 0;
+            destinationComboBox.SelectedIndex = 0;
+            methodOfReservationComboBox.SelectedIndex = 0;
+            confirmPurchaseButton.Enabled = false;
+            firstNameMaskedTextBox.Text = "";
+            lastNameMaskedTextBox.Text = "";
+            homeAddressTextBox.Text = "";
+            phoneNumberMaskedTextBox.Text = "";
+            creditCardNumberTextBox.Text = "";
+            emailMaskedTextBox.Text = "";
+            existingCustomerTextBox.Text = "";
+            costLabel.Text = "$00.00";
+        }
+
         private void confirmPurchaseButton_Click(object sender, EventArgs e)
         {
             newUserPanel.Visible = false;
@@ -178,7 +350,7 @@ namespace Vandeven_Shuttle
             c.FirstName = firstNameMaskedTextBox.Text;
             c.LastName = lastNameMaskedTextBox.Text;
             c.Address = homeAddressTextBox.Text;
-            c.CreditCardNumber = Convert.ToDouble(creditCardNumberTextBox.Text);
+            c.CreditCardNumber = creditCardNumberTextBox.Text.ToString();
             c.Email = emailMaskedTextBox.Text;
             c.PhoneNumber = Convert.ToDouble(phoneNumberMaskedTextBox.Text);
 
@@ -188,9 +360,10 @@ namespace Vandeven_Shuttle
             r.ReservationDate = DateTime.Today;
             r.ReservationMethod = methodOfReservationComboBox.SelectedItem.ToString();
             r.TravelDate = departingDateTimePicker.Value.Date;
-            
+
             d.InsertCustomer(c);
-            d.InsertReservation(r);
+            d.InsertReservation(r, c);
+            
         }
 
     }

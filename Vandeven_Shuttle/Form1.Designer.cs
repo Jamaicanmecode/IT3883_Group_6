@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(vandevenShuttleSystem));
             this.reservationDetailsGroupBox = new System.Windows.Forms.GroupBox();
             this.passengersComboBox = new System.Windows.Forms.ComboBox();
@@ -68,11 +69,13 @@
             this.reservationCompletePanel = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.thankYouLabel = new System.Windows.Forms.Label();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.reservationDetailsGroupBox.SuspendLayout();
             this.customerInformationGroupBox.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.newUserPanel.SuspendLayout();
             this.reservationCompletePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // reservationDetailsGroupBox
@@ -266,6 +269,7 @@
             this.creditCardNumberTextBox.Size = new System.Drawing.Size(132, 22);
             this.creditCardNumberTextBox.TabIndex = 16;
             this.creditCardNumberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.creditCardNumberTextBox_KeyPress);
+            this.creditCardNumberTextBox.Leave += new System.EventHandler(this.creditCardNumberTextBox_Leave);
             // 
             // emailMaskedTextBox
             // 
@@ -306,6 +310,7 @@
             this.phoneNumberMaskedTextBox.Size = new System.Drawing.Size(132, 22);
             this.phoneNumberMaskedTextBox.TabIndex = 13;
             this.phoneNumberMaskedTextBox.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
+            this.phoneNumberMaskedTextBox.Leave += new System.EventHandler(this.phoneNumberMaskedTextBox_Leave);
             // 
             // phoneNumberLabel
             // 
@@ -326,6 +331,7 @@
             this.lastNameMaskedTextBox.Size = new System.Drawing.Size(132, 22);
             this.lastNameMaskedTextBox.TabIndex = 12;
             this.lastNameMaskedTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.lastNameMaskedTextBox_KeyPress);
+            this.lastNameMaskedTextBox.Leave += new System.EventHandler(this.lastNameMaskedTextBox_Leave);
             // 
             // homeAddressLabel
             // 
@@ -348,6 +354,7 @@
             this.firstNameMaskedTextBox.Size = new System.Drawing.Size(132, 22);
             this.firstNameMaskedTextBox.TabIndex = 11;
             this.firstNameMaskedTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.firstNameMaskedTextBox_KeyPress);
+            this.firstNameMaskedTextBox.Leave += new System.EventHandler(this.firstNameMaskedTextBox_Leave);
             // 
             // lastNameLabel
             // 
@@ -376,6 +383,7 @@
             this.homeAddressTextBox.Name = "homeAddressTextBox";
             this.homeAddressTextBox.Size = new System.Drawing.Size(132, 22);
             this.homeAddressTextBox.TabIndex = 2;
+            this.homeAddressTextBox.Leave += new System.EventHandler(this.homeAddressTextBox_Leave);
             // 
             // mainPanel
             // 
@@ -566,6 +574,10 @@
             this.thankYouLabel.Text = "Thank you for your reservation.";
             this.thankYouLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
             // vandevenShuttleSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -594,6 +606,7 @@
             this.newUserPanel.PerformLayout();
             this.reservationCompletePanel.ResumeLayout(false);
             this.reservationCompletePanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -639,6 +652,7 @@
         private System.Windows.Forms.Panel reservationCompletePanel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label thankYouLabel;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }
 
