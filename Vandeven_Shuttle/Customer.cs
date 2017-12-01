@@ -66,8 +66,8 @@ namespace Vandeven_Shuttle
             }
         }
 
-        private double creditCardNumber;
-        public double CreditCardNumber
+        private string creditCardNumber;
+        public string CreditCardNumber
         {
             get
             {
@@ -93,6 +93,21 @@ namespace Vandeven_Shuttle
                 phoneNumber = value;
             }
         }
+
+        private double id;
+        public double Id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
+        }
+
 
     }
 }

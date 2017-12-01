@@ -196,11 +196,12 @@ namespace Vandeven_Shuttle
             reservationCompletePanel.Visible = true;
             reservationCompletePanel.BringToFront();
 
+
             Customer c = new Customer();
             c.FirstName = firstNameMaskedTextBox.Text;
             c.LastName = lastNameMaskedTextBox.Text;
             c.Address = homeAddressTextBox.Text;
-            c.CreditCardNumber = Convert.ToDouble(creditCardNumberTextBox.Text);
+            c.CreditCardNumber = creditCardNumberTextBox.Text.ToString();
             c.Email = emailMaskedTextBox.Text;
             c.PhoneNumber = Convert.ToDouble(phoneNumberMaskedTextBox.Text);
 
@@ -210,9 +211,9 @@ namespace Vandeven_Shuttle
             r.ReservationDate = DateTime.Today;
             r.ReservationMethod = methodOfReservationComboBox.SelectedItem.ToString();
             r.TravelDate = departingDateTimePicker.Value.Date;
-            
+
             d.InsertCustomer(c);
-            d.InsertReservation(r);
+            d.InsertReservation(r, c);
         }
         private void firstNameMaskedTextBox_Leave(object sender, EventArgs e)
         {
