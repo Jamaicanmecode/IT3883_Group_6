@@ -7,20 +7,6 @@
       <FileName>Form1.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Vandeven_Shuttle.databaseConnection">
-    <Position X="4.5" Y="1.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
-      <FileName>databaseConnection.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Vandeven_Shuttle.Customer">
-    <Position X="6.5" Y="2.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAABAAAAgAAAAAAAAAEIAAAAAAAAACgAAAAA=</HashCode>
-      <FileName>Customer.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="Vandeven_Shuttle.existingCustomer">
     <Position X="6.5" Y="0.75" Width="1.5" />
     <TypeIdentifier>
@@ -33,6 +19,20 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAQAAQBAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Reservation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Vandeven_Shuttle.databaseConnection">
+    <Position X="4.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAABAAAAACQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>databaseConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Vandeven_Shuttle.Customer">
+    <Position X="6.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAEAAACBAAAAgAAAAQAAAAEIAAAACAAAACgAAAAg=</HashCode>
+      <FileName>Customer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="Vandeven_Shuttle.GUI">
