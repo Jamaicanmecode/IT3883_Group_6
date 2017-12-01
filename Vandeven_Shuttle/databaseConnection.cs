@@ -17,7 +17,7 @@ namespace Vandeven_Shuttle
         // Change the connection location when adding it to the final build
         private void ConnectTo()
         {
-            connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\shark\Documents\VandevanAirShuttle.accdb");
+            connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\Downloads\VandevanAirShuttle_1.accdb");
             command = connection.CreateCommand();
             getIdCommand = connection.CreateCommand();
         }
@@ -52,6 +52,7 @@ namespace Vandeven_Shuttle
             }
         }
 
+        // Existing customer code
         public void InsertReservation(Reservation r)
         {
             try
@@ -77,6 +78,33 @@ namespace Vandeven_Shuttle
             }
         }
 
+        public void SearchCustomer (existingCustomer ec)
+        {
+            try
+            {
+                command.CommandText = "SELECT * FROM Customer WHERE CustomerEmail = 'ec.Email'";
+                command.CommandType = System.Data.CommandType.Text;
+                connection.Open();
 
+                command.ExecuteNonQuery();
+
+                //Write code that will use Output of query and set Customer.cs with values from query and send it to the UI.
+
+            }
+
+            catch (Exception)
+            {
+                throw;
+            }
+
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
+            }
+        }
     }
-}
+

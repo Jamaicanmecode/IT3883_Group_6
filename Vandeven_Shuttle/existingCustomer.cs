@@ -10,7 +10,21 @@ namespace Vandeven_Shuttle
         /// <summary>
         /// load the existing customer into the contructor
         /// </summary>
-        public void eCustomer()
+
+        private string email;
+        public string Email
+        {
+            get
+            {
+                return email;
+            }
+
+            set
+            {
+                email = value;
+            }
+        }
+ /*       public void eCustomer()
         {
             throw new System.NotImplementedException();
         }
@@ -22,5 +36,5 @@ namespace Vandeven_Shuttle
         {
             throw new System.NotImplementedException();
         }
-    }
+    }*/
 }
