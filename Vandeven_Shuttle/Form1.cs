@@ -189,6 +189,28 @@ namespace Vandeven_Shuttle
             }
         }
 
+        //button for existing customers to confirm purchase
+        private void confirmPurchaseButtonExisting_Click(object sender, EventArgs e)
+        {
+            newUserPanel.Visible = false;
+            reservationCompletePanel.Visible = true;
+            reservationCompletePanel.BringToFront();
+            String enteredEmail = emailSearchTextBox.Text;
+            List<String> customerInfo = d.getCustomerInfo(enteredEmail);
+            long currentId = Convert.ToInt64(customerInfo[0]);
+
+            Customer c = new Customer();
+            Reservation r = new Reservation();
+            
+            r.DestinationCity = destinationComboBox.SelectedItem.ToString();
+            r.PassengerCount = Convert.ToInt32(passengersComboBox.SelectedItem.ToString());
+            r.ReservationDate = DateTime.Today;
+            r.ReservationMethod = methodOfReservationComboBox.SelectedItem.ToString();
+            r.TravelDate = departingDateTimePicker.Value.Date;
+            d.InsertReservationExisiting(r, currentId);
+        }
+
+        //button for new customers to confirm purchase
         private void confirmPurchaseButton_Click(object sender, EventArgs e)
         {
             newUserPanel.Visible = false;
@@ -395,36 +417,49 @@ namespace Vandeven_Shuttle
         private void enterButton_Click(object sender, EventArgs e)
         {
             //this button controls the search for an existing customer
-            newUserPanel.Visible = true;
-            newUserPanel.BringToFront();
-            mainPanel.Visible = false;
-            reservationCompletePanel.Visible = false;
-            firstNameMaskedTextBox.Visible = false;
-            firstNameMaskedTextBox.Enabled = false;
-            lastNameMaskedTextBox.Visible = false;
-            lastNameMaskedTextBox.Enabled = false;
-            homeAddressTextBox.Visible = false;
-            homeAddressTextBox.Enabled = false;
-            phoneNumberMaskedTextBox.Visible = false;
-            phoneNumberMaskedTextBox.Enabled = false;
-            creditCardNumberTextBox.Visible = false;
-            creditCardNumberTextBox.Enabled = false;
-            emailMaskedTextBox.Visible = false;
-            emailMaskedTextBox.Enabled = false;
-            firstNameOutputLabel.Visible = true;
-            lastNameOutputLabel.Visible = true;
-            homeAddressOutputLabel.Visible = true;
-            phoneNumberOutputLabel.Visible = true;
-            creditCardNumberOutput.Visible = true;
-            emailAddressOutputLabel.Visible = true;
+            String enteredEmail = emailSearchTextBox.Text;
+            Boolean check = d.exisitingCustomerVerification(enteredEmail);
             
-          
-            //code to search database and insert info onto the gui here
+            if(check == true)
+            {
+                newUserPanel.Visible = true;
+                newUserPanel.BringToFront();
+                mainPanel.Visible = false;
+                reservationCompletePanel.Visible = false;
+                firstNameMaskedTextBox.Visible = false;
+                firstNameMaskedTextBox.Enabled = false;
+                lastNameMaskedTextBox.Visible = false;
+                lastNameMaskedTextBox.Enabled = false;
+                homeAddressTextBox.Visible = false;
+                homeAddressTextBox.Enabled = false;
+                phoneNumberMaskedTextBox.Visible = false;
+                phoneNumberMaskedTextBox.Enabled = false;
+                creditCardNumberTextBox.Visible = false;
+                creditCardNumberTextBox.Enabled = false;
+                emailMaskedTextBox.Visible = false;
+                emailMaskedTextBox.Enabled = false;
+                firstNameOutputLabel.Visible = true;
+                lastNameOutputLabel.Visible = true;
+                homeAddressOutputLabel.Visible = true;
+                phoneNumberOutputLabel.Visible = true;
+                creditCardNumberOutput.Visible = true;
+                emailAddressOutputLabel.Visible = true;
+                confirmPurchaseButton.Visible = false;
+                confirmPurchaseButtonExisting.Visible = true;
 
-
-
-
-
+                List<String> customerInfo = d.getCustomerInfo(enteredEmail);
+                long currentId = Convert.ToInt64(customerInfo[0]);
+                firstNameOutputLabel.Text = customerInfo[1];
+                lastNameOutputLabel.Text = customerInfo[2];
+                homeAddressOutputLabel.Text = customerInfo[3];
+                phoneNumberOutputLabel.Text = customerInfo[4];
+                creditCardNumberOutput.Text = customerInfo[5];
+                emailAddressOutputLabel.Text = enteredEmail;
+            }
+            else
+            {
+                MessageBox.Show("User Not Found");
+            }
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -470,5 +505,7 @@ namespace Vandeven_Shuttle
                 enterButton.Enabled = false;
             }
         }
+
+
     }
 }
