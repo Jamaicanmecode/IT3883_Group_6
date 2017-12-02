@@ -7,8 +7,6 @@ namespace Vandeven_Shuttle
 {
     public class Reservation
     {
-      private  int customerID;
-
        private DateTime reservationDate;
         
 
