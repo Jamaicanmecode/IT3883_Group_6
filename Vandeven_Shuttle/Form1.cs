@@ -30,7 +30,7 @@ namespace Vandeven_Shuttle
         public vandevenShuttleSystem()
         {
             InitializeComponent();
-            
+
         }
 
         private void vandevenShuttleSystem_Load(object sender, EventArgs e)
@@ -48,7 +48,6 @@ namespace Vandeven_Shuttle
 
         private void newCustomerButton_Click(object sender, EventArgs e)
         {
-            
             newUserPanel.Visible = true;
             newUserPanel.BringToFront();
             mainPanel.Visible = false;
@@ -195,17 +194,18 @@ namespace Vandeven_Shuttle
             newUserPanel.Visible = false;
             reservationCompletePanel.Visible = true;
             reservationCompletePanel.BringToFront();
-
-
             Customer c = new Customer();
+            Reservation r = new Reservation();
+
+
             c.FirstName = firstNameMaskedTextBox.Text;
             c.LastName = lastNameMaskedTextBox.Text;
             c.Address = homeAddressTextBox.Text;
             c.CreditCardNumber = creditCardNumberTextBox.Text.ToString();
             c.Email = emailMaskedTextBox.Text;
-            c.PhoneNumber = Convert.ToDouble(phoneNumberMaskedTextBox.Text);
+            c.PhoneNumber = phoneNumberMaskedTextBox.Text;
 
-            Reservation r = new Reservation();
+
             r.DestinationCity = destinationComboBox.SelectedItem.ToString();
             r.PassengerCount = Convert.ToInt32(passengersComboBox.SelectedItem.ToString());
             r.ReservationDate = DateTime.Today;
@@ -366,6 +366,7 @@ namespace Vandeven_Shuttle
 
         private void mainMenuButton_Click(object sender, EventArgs e)
         {
+            Application.Restart();
             mainPanel.Visible = true;
             mainPanel.BringToFront();
             reservationCompletePanel.Visible = false;

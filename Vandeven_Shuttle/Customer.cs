@@ -80,8 +80,8 @@ namespace Vandeven_Shuttle
             }
         }
 
-        private double phoneNumber;
-        public double PhoneNumber
+        private string phoneNumber;
+        public string PhoneNumber
         {
             get
             {
@@ -94,8 +94,8 @@ namespace Vandeven_Shuttle
             }
         }
 
-        private double id;
-        public double Id
+        private long id;
+        public long Id
         {
             get
             {

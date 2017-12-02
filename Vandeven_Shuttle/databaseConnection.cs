@@ -15,7 +15,7 @@ namespace Vandeven_Shuttle
         // Change the connection location when adding it to the final build
         private void ConnectTo()
         {
-            connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\shark\Documents\VandevanAirShuttle_1.accdb");
+            connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Shadybrook\Documents\Visual Studio 2015\Projects\VandevanAirShuttle_1.accdb");
             command = connection.CreateCommand();
         }
 
@@ -40,7 +40,7 @@ namespace Vandeven_Shuttle
                 command.ExecuteNonQuery();
 
                 command.CommandText = "SELECT CustomerID FROM Customer WHERE CustomerEmail ='" + c.Email + "'";
-                c.Id = Convert.ToDouble(command.ExecuteScalar().ToString());
+                c.Id = Convert.ToInt64(command.ExecuteScalar().ToString());
             }
             catch (Exception)
             {
