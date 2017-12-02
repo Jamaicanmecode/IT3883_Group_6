@@ -13,6 +13,9 @@ namespace Vandeven_Shuttle
         OleDbCommand command;
 
         // Change the connection location when adding it to the final build
+        /// <summary>
+        /// Set the connection string for the datebase and creates a new command object
+        /// </summary>
         private void ConnectTo()
         {
             connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Shadybrook\Documents\Visual Studio 2015\Projects\VandevanAirShuttle_1.accdb");
@@ -24,6 +27,9 @@ namespace Vandeven_Shuttle
             ConnectTo();
         }
 
+        /// <summary>
+        /// Gathers existing customer information from the database to display in the GUI
+        /// </summary>
         public List<String> getCustomerInfo(String email)
         {
             List<String> customerInformation = new List<String>();
@@ -58,6 +64,9 @@ namespace Vandeven_Shuttle
             return customerInformation;
         }
 
+        /// <summary>
+        /// Compares the customer's email to the email records the database
+        /// </summary>
         public Boolean exisitingCustomerVerification(String email)
         {
             try
@@ -81,6 +90,9 @@ namespace Vandeven_Shuttle
             return true;
         }
 
+        /// <summary>
+        /// Insert Information into the customer table from the new customer section in the GUI
+        /// </summary>
         public void InsertCustomer(Customer c)
         {
             try
@@ -113,6 +125,9 @@ namespace Vandeven_Shuttle
             }
         }
 
+        /// <summary>
+        /// Insert information into the reservation table from the existing customer section in the GUI
+        /// </summary>
         public void InsertReservationExisiting(Reservation r, long customerId)
         {
             try
@@ -138,6 +153,9 @@ namespace Vandeven_Shuttle
             }
         }
 
+        /// <summary>
+        /// Insert information into the reservation table from the new customer section in the GUI
+        /// </summary>
         public void InsertReservation(Reservation r, Customer c)
         {
             try
