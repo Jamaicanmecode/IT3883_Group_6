@@ -69,6 +69,7 @@
             this.newCustomerTextBox = new System.Windows.Forms.TextBox();
             this.existingCustomerTextBox = new System.Windows.Forms.TextBox();
             this.newUserPanel = new System.Windows.Forms.Panel();
+            this.confirmPurchaseButtonExisting = new System.Windows.Forms.Button();
             this.backButton = new System.Windows.Forms.Button();
             this.costLabel = new System.Windows.Forms.Label();
             this.confirmPurchaseButton = new System.Windows.Forms.Button();
@@ -78,7 +79,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.reservationCompleteLabel = new System.Windows.Forms.Label();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.confirmPurchaseButtonExisting = new System.Windows.Forms.Button();
             this.reservationDetailsGroupBox.SuspendLayout();
             this.customerInformationGroupBox.SuspendLayout();
             this.mainPanel.SuspendLayout();
@@ -134,9 +134,11 @@
             "19",
             "20"});
             this.passengersComboBox.Location = new System.Drawing.Point(104, 199);
+            this.passengersComboBox.MaxLength = 20;
             this.passengersComboBox.Name = "passengersComboBox";
             this.passengersComboBox.Size = new System.Drawing.Size(56, 21);
             this.passengersComboBox.TabIndex = 11;
+            this.passengersComboBox.SelectedIndexChanged += new System.EventHandler(this.passengersComboBox_SelectedIndexChanged);
             this.passengersComboBox.SelectionChangeCommitted += new System.EventHandler(this.passengersComboBox_SelectionChangeCommitted);
             // 
             // passengersLabel
@@ -174,6 +176,7 @@
             this.returningDateTimePicker.Name = "returningDateTimePicker";
             this.returningDateTimePicker.Size = new System.Drawing.Size(76, 20);
             this.returningDateTimePicker.TabIndex = 10;
+            this.returningDateTimePicker.ValueChanged += new System.EventHandler(this.returningDateTimePicker_ValueChanged);
             // 
             // returningLabel
             // 
@@ -192,6 +195,7 @@
             this.departingDateTimePicker.Name = "departingDateTimePicker";
             this.departingDateTimePicker.Size = new System.Drawing.Size(76, 20);
             this.departingDateTimePicker.TabIndex = 9;
+            this.departingDateTimePicker.ValueChanged += new System.EventHandler(this.departingDateTimePicker_ValueChanged);
             // 
             // methodOfReservationComboBox
             // 
@@ -548,6 +552,16 @@
             this.newUserPanel.TabIndex = 8;
             this.newUserPanel.Visible = false;
             // 
+            // confirmPurchaseButtonExisting
+            // 
+            this.confirmPurchaseButtonExisting.Location = new System.Drawing.Point(583, 349);
+            this.confirmPurchaseButtonExisting.Name = "confirmPurchaseButtonExisting";
+            this.confirmPurchaseButtonExisting.Size = new System.Drawing.Size(76, 35);
+            this.confirmPurchaseButtonExisting.TabIndex = 14;
+            this.confirmPurchaseButtonExisting.Text = "Confirm Purchase";
+            this.confirmPurchaseButtonExisting.UseVisualStyleBackColor = true;
+            this.confirmPurchaseButtonExisting.Click += new System.EventHandler(this.confirmPurchaseButtonExisting_Click);
+            // 
             // backButton
             // 
             this.backButton.Location = new System.Drawing.Point(37, 28);
@@ -638,16 +652,6 @@
             this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider.ContainerControl = this;
             // 
-            // confirmPurchaseButtonExisting
-            // 
-            this.confirmPurchaseButtonExisting.Location = new System.Drawing.Point(583, 349);
-            this.confirmPurchaseButtonExisting.Name = "confirmPurchaseButtonExisting";
-            this.confirmPurchaseButtonExisting.Size = new System.Drawing.Size(76, 35);
-            this.confirmPurchaseButtonExisting.TabIndex = 14;
-            this.confirmPurchaseButtonExisting.Text = "Confirm Purchase";
-            this.confirmPurchaseButtonExisting.UseVisualStyleBackColor = true;
-            this.confirmPurchaseButtonExisting.Click += new System.EventHandler(this.confirmPurchaseButtonExisting_Click);
-            // 
             // vandevenShuttleSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -656,8 +660,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(690, 426);
-            this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.newUserPanel);
+            this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.reservationCompletePanel);
             this.DoubleBuffered = true;
             this.MaximizeBox = false;

@@ -35,7 +35,7 @@ namespace Vandeven_Shuttle
 
         private void vandevenShuttleSystem_Load(object sender, EventArgs e)
         {
-            passengersComboBox.SelectedIndex = 0;
+            passengersComboBox.SelectedIndex = 1;
             destinationComboBox.SelectedIndex = 0;
             methodOfReservationComboBox.SelectedIndex = 0;
             enterButton.Enabled = false;
@@ -70,6 +70,8 @@ namespace Vandeven_Shuttle
             phoneNumberOutputLabel.Visible = false;
             creditCardNumberOutput.Visible = false;
             emailAddressOutputLabel.Visible = false;
+            confirmPurchaseButton.Visible = true;
+            confirmPurchaseButtonExisting.Visible = false;
 
         }
 
@@ -210,32 +212,60 @@ namespace Vandeven_Shuttle
             d.InsertReservationExisiting(r, currentId);
         }
 
+        public Boolean dateCheck()
+        {
+            Boolean finalCheck = false;
+            DateTime resDay = departingDateTimePicker.Value;
+            DateTime returnDay = returningDateTimePicker.Value;
+            DateTime today = DateTime.Today;
+
+            
+            if(resDay > today.AddDays(60))
+            {
+                MessageBox.Show("Reservation can only be made up to 60 days in advance.");
+                finalCheck = false;
+            }
+            else if(returnDay <= resDay){
+                MessageBox.Show("The return date cannot be the same as or earlier than the departure date.");
+                finalCheck = false;
+            }
+            else if ((resDay < today.AddDays(60)) && (resDay < returnDay))
+            {
+                finalCheck = true;
+            }
+            return finalCheck;
+        }
+
         //button for new customers to confirm purchase
         private void confirmPurchaseButton_Click(object sender, EventArgs e)
         {
-            newUserPanel.Visible = false;
-            reservationCompletePanel.Visible = true;
-            reservationCompletePanel.BringToFront();
-            Customer c = new Customer();
-            Reservation r = new Reservation();
+            Boolean check = dateCheck();
+            if (check == true)
+            {
+                newUserPanel.Visible = false;
+                reservationCompletePanel.Visible = true;
+                reservationCompletePanel.BringToFront();
+                Customer c = new Customer();
+                Reservation r = new Reservation();
 
 
-            c.FirstName = firstNameMaskedTextBox.Text;
-            c.LastName = lastNameMaskedTextBox.Text;
-            c.Address = homeAddressTextBox.Text;
-            c.CreditCardNumber = creditCardNumberTextBox.Text.ToString();
-            c.Email = emailMaskedTextBox.Text;
-            c.PhoneNumber = phoneNumberMaskedTextBox.Text;
+                c.FirstName = firstNameMaskedTextBox.Text;
+                c.LastName = lastNameMaskedTextBox.Text;
+                c.Address = homeAddressTextBox.Text;
+                c.CreditCardNumber = creditCardNumberTextBox.Text.ToString();
+                c.Email = emailMaskedTextBox.Text;
+                c.PhoneNumber = phoneNumberMaskedTextBox.Text;
 
 
-            r.DestinationCity = destinationComboBox.SelectedItem.ToString();
-            r.PassengerCount = Convert.ToInt32(passengersComboBox.SelectedItem.ToString());
-            r.ReservationDate = DateTime.Today;
-            r.ReservationMethod = methodOfReservationComboBox.SelectedItem.ToString();
-            r.TravelDate = departingDateTimePicker.Value.Date;
+                r.DestinationCity = destinationComboBox.SelectedItem.ToString();
+                r.PassengerCount = Convert.ToInt32(passengersComboBox.SelectedItem.ToString());
+                r.ReservationDate = DateTime.Today;
+                r.ReservationMethod = methodOfReservationComboBox.SelectedItem.ToString();
+                r.TravelDate = departingDateTimePicker.Value.Date;
 
-            d.InsertCustomer(c);
-            d.InsertReservation(r, c);
+                d.InsertCustomer(c);
+                d.InsertReservation(r, c);
+            }            
         }
         private void firstNameMaskedTextBox_Leave(object sender, EventArgs e)
         {
@@ -506,6 +536,19 @@ namespace Vandeven_Shuttle
             }
         }
 
+        private void passengersComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
+
+        private void returningDateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void departingDateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
