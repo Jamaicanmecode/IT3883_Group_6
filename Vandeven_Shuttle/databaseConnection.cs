@@ -11,15 +11,12 @@ namespace Vandeven_Shuttle
     {
         System.Data.OleDb.OleDbConnection connection;
         OleDbCommand command;
-        OleDbCommand getIdCommand;
-        int id;
 
         // Change the connection location when adding it to the final build
         private void ConnectTo()
         {
-            connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\Downloads\VandevanAirShuttle_1.accdb");
+            connection = new OleDbConnection(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\shark\Documents\VandevanAirShuttle_1.accdb");
             command = connection.CreateCommand();
-            getIdCommand = connection.CreateCommand();
         }
 
         public databaseConnection()
@@ -32,11 +29,18 @@ namespace Vandeven_Shuttle
             try
             {
                 connection.Open();
-                command.CommandText = "INSERT INTO Customer (FirstName, LastName, CustomerAddress, CustomerNumber, CreditCardNumber, CustomerEmail) VALUES ('" + c.FirstName + "','" +
-                    c.LastName + "','" + c.Address + "','" + c.PhoneNumber + "','" + c.CreditCardNumber + "','" + c.Email + "')";
-                command.CommandType = System.Data.CommandType.Text;
+                command.CommandText = "INSERT INTO Customer (FirstName, LastName, CustomerAddress, CustomerNumber, CreditCardNumber, CustomerEmail) VALUES (?,?,?,?,?,?)";
+                command.Parameters.AddWithValue("FirstName", c.FirstName);
+                command.Parameters.AddWithValue("LastName", c.LastName);
+                command.Parameters.AddWithValue("CustomerAddress", c.Address);
+                command.Parameters.AddWithValue("CustomerPhoneNumber", c.PhoneNumber);
+                command.Parameters.AddWithValue("CustomerCreditCardNumber", c.CreditCardNumber);
+                command.Parameters.AddWithValue("CustomerEmail", c.Email);
 
-                command.ExecuteNonQuery(); 
+                command.ExecuteNonQuery();
+
+                command.CommandText = "SELECT CustomerID FROM Customer WHERE CustomerEmail ='" + c.Email + "'";
+                c.Id = Convert.ToDouble(command.ExecuteScalar().ToString());
             }
             catch (Exception)
             {
@@ -52,13 +56,13 @@ namespace Vandeven_Shuttle
             }
         }
 
-        // Existing customer code
-        public void InsertReservation(Reservation r)
+        public void InsertReservation(Reservation r, Customer c)
         {
             try
             {
-                command.CommandText = "INSERT INTO Reservation (CustomerID, ReserveDate, TravelDate, DestinationCity, NumPassengers, ShuttleID, ReservMethod) VALUES ('"+id + "','" + 
-                    r.ReservationDate + "','" + r.TravelDate + "','" + r.DestinationCity + "','" + r.PassengerCount + "','" + 1 + "','" + r.ReservationMethod +"')";
+                int id = Convert.ToInt32(c.Id);
+                command.CommandText = "INSERT INTO Reservation (CustomerID, ReserveDate, TravelDate, DestinationCity, NumPassengers, ShuttleID, ReservMethod) VALUES ('" + id + "','" +
+                    r.ReservationDate + "','" + r.TravelDate + "','" + r.DestinationCity + "','" + r.PassengerCount + "','" + 1 + "','" + r.ReservationMethod + "')";
                 command.CommandType = System.Data.CommandType.Text;
                 connection.Open();
 
@@ -78,33 +82,7 @@ namespace Vandeven_Shuttle
             }
         }
 
-        public void SearchCustomer (existingCustomer ec)
-        {
-            try
-            {
-                command.CommandText = "SELECT * FROM Customer WHERE CustomerEmail = 'ec.Email'";
-                command.CommandType = System.Data.CommandType.Text;
-                connection.Open();
 
-                command.ExecuteNonQuery();
-
-                //Write code that will use Output of query and set Customer.cs with values from query and send it to the UI.
-
-            }
-
-            catch (Exception)
-            {
-                throw;
-            }
-
-            finally
-            {
-                if (connection != null)
-                {
-                    connection.Close();
-                }
-            }
-            }
-        }
     }
+}
 
