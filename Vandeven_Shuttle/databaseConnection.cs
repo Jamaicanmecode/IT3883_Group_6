@@ -29,9 +29,13 @@ namespace Vandeven_Shuttle
             try
             {
                 connection.Open();
-                command.CommandText = "INSERT INTO Customer (FirstName, LastName, CustomerAddress, CustomerNumber, CreditCardNumber, CustomerEmail) VALUES ('" + c.FirstName + "','" +
-                    c.LastName + "','" + c.Address + "','" + c.PhoneNumber + "','" + c.CreditCardNumber + "','" + c.Email + "')";
-                command.CommandType = System.Data.CommandType.Text;
+                command.CommandText = "INSERT INTO Customer (FirstName, LastName, CustomerAddress, CustomerNumber, CreditCardNumber, CustomerEmail) VALUES (?,?,?,?,?,?)";
+                command.Parameters.AddWithValue("FirstName", c.FirstName);
+                command.Parameters.AddWithValue("LastName", c.LastName);
+                command.Parameters.AddWithValue("CustomerAddress", c.Address);
+                command.Parameters.AddWithValue("CustomerPhoneNumber", c.PhoneNumber);
+                command.Parameters.AddWithValue("CustomerCreditCardNumber", c.CreditCardNumber);
+                command.Parameters.AddWithValue("CustomerEmail", c.Email);
 
                 command.ExecuteNonQuery();
 
