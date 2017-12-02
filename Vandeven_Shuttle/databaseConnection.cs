@@ -24,6 +24,63 @@ namespace Vandeven_Shuttle
             ConnectTo();
         }
 
+        public List<String> getCustomerInfo(String email)
+        {
+            List<String> customerInformation = new List<String>();
+            try
+            {
+                connection.Open();
+                command.CommandText = "SELECT CustomerID FROM Customer WHERE CustomerEmail ='" + email + "'";
+                customerInformation.Add(command.ExecuteScalar().ToString());
+                command.CommandText = "SELECT FirstName FROM Customer WHERE CustomerEmail ='" + email + "'";
+                customerInformation.Add(command.ExecuteScalar().ToString());
+                command.CommandText = "SELECT LastName FROM Customer WHERE CustomerEmail ='" + email + "'";
+                customerInformation.Add(command.ExecuteScalar().ToString());
+                command.CommandText = "SELECT CustomerAddress FROM Customer WHERE CustomerEmail ='" + email + "'";
+                customerInformation.Add(command.ExecuteScalar().ToString());
+                command.CommandText = "SELECT CustomerNumber FROM Customer WHERE CustomerEmail ='" + email + "'";
+                customerInformation.Add(command.ExecuteScalar().ToString());
+                command.CommandText = "SELECT CreditCardNumber FROM Customer WHERE CustomerEmail ='" + email + "'";
+                customerInformation.Add(command.ExecuteScalar().ToString());
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
+
+            return customerInformation;
+        }
+
+        public Boolean exisitingCustomerVerification(String email)
+        {
+            try
+            {
+                connection.Open();
+                command.CommandText = "SELECT CustomerID FROM Customer WHERE CustomerEmail ='" + email + "'";
+                long customerId = Convert.ToInt64(command.ExecuteScalar().ToString());
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
+            return true;
+        }
+
         public void InsertCustomer(Customer c)
         {
             try
@@ -41,6 +98,31 @@ namespace Vandeven_Shuttle
 
                 command.CommandText = "SELECT CustomerID FROM Customer WHERE CustomerEmail ='" + c.Email + "'";
                 c.Id = Convert.ToInt64(command.ExecuteScalar().ToString());
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
+            }
+        }
+
+        public void InsertReservationExisiting(Reservation r, long customerId)
+        {
+            try
+            {
+                command.CommandText = "INSERT INTO Reservation (CustomerID, ReserveDate, TravelDate, DestinationCity, NumPassengers, ShuttleID, ReservMethod) VALUES ('" + customerId + "','" +
+                    r.ReservationDate + "','" + r.TravelDate + "','" + r.DestinationCity + "','" + r.PassengerCount + "','" + 1 + "','" + r.ReservationMethod + "')";
+                command.CommandType = System.Data.CommandType.Text;
+                connection.Open();
+
+                command.ExecuteNonQuery();
             }
             catch (Exception)
             {

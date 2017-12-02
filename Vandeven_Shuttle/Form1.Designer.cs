@@ -78,6 +78,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.reservationCompleteLabel = new System.Windows.Forms.Label();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.confirmPurchaseButtonExisting = new System.Windows.Forms.Button();
             this.reservationDetailsGroupBox.SuspendLayout();
             this.customerInformationGroupBox.SuspendLayout();
             this.mainPanel.SuspendLayout();
@@ -534,6 +535,7 @@
             // newUserPanel
             // 
             this.newUserPanel.BackColor = System.Drawing.Color.Transparent;
+            this.newUserPanel.Controls.Add(this.confirmPurchaseButtonExisting);
             this.newUserPanel.Controls.Add(this.backButton);
             this.newUserPanel.Controls.Add(this.costLabel);
             this.newUserPanel.Controls.Add(this.confirmPurchaseButton);
@@ -636,6 +638,16 @@
             this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider.ContainerControl = this;
             // 
+            // confirmPurchaseButtonExisting
+            // 
+            this.confirmPurchaseButtonExisting.Location = new System.Drawing.Point(583, 349);
+            this.confirmPurchaseButtonExisting.Name = "confirmPurchaseButtonExisting";
+            this.confirmPurchaseButtonExisting.Size = new System.Drawing.Size(76, 35);
+            this.confirmPurchaseButtonExisting.TabIndex = 14;
+            this.confirmPurchaseButtonExisting.Text = "Confirm Purchase";
+            this.confirmPurchaseButtonExisting.UseVisualStyleBackColor = true;
+            this.confirmPurchaseButtonExisting.Click += new System.EventHandler(this.confirmPurchaseButtonExisting_Click);
+            // 
             // vandevenShuttleSystem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -644,8 +656,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.ClientSize = new System.Drawing.Size(690, 426);
-            this.Controls.Add(this.newUserPanel);
             this.Controls.Add(this.mainPanel);
+            this.Controls.Add(this.newUserPanel);
             this.Controls.Add(this.reservationCompletePanel);
             this.DoubleBuffered = true;
             this.MaximizeBox = false;
@@ -718,6 +730,7 @@
         private System.Windows.Forms.Label lastNameOutputLabel;
         private System.Windows.Forms.Label firstNameOutputLabel;
         private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.Button confirmPurchaseButtonExisting;
     }
 }
 
